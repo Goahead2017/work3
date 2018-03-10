@@ -36,9 +36,11 @@ public class ActivityThree extends AppCompatActivity {
     @Override
     protected void onPause(){
         super.onPause();
-        if(mediaPlayer.isPlaying()){
-            mediaPlayer.pause();
-            position = mediaPlayer.getCurrentPosition();
+        if(mediaPlayer != null ){
+            if(mediaPlayer.isPlaying()) {
+                mediaPlayer.pause();
+                position = mediaPlayer.getCurrentPosition();
+            }
         }
     }
 

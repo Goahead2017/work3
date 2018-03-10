@@ -8,13 +8,13 @@ import java.util.List;
  */
 
 public class Other {
-    public static int WITTH = 0;
+    static int WITTH = 0;
     public static List<String>data = new ArrayList<>();
-    public static List<String>data2 = new ArrayList<>();
-    public static boolean FIRST = true;
-    public static boolean SECOND = true;
-    public static int x = 0;
-    public static int y = 0;
-    public static boolean flag1 = true;
-    public static boolean flag2 = true;
+    static List<String>data2 = new ArrayList<>();
+    static boolean FIRST = true;
+    static boolean SECOND = true;
+    static int x = 0;
+    static int y = 0;
+    static boolean flag1 = true;
+    static boolean flag2 = true;
 }

@@ -52,4 +52,16 @@
     <string name="thirty_two">晚安</string>
     <string name="thirty_three">重邮</string>
     <string name="thirty_four">~明天再战~</string>
+    <string name="input">请输入个性签名</string>
+    <string name="start">点击开始输入</string>
+    <string name="saying">良药苦口利于病，忠言逆耳利于行</string>
+    <string name="personal_saying">个性签名</string>
+    <string name="change_skin">换肤</string>
+    <string name="bg1">背景1</string>
+    <string name="bg2">背景2</string>
+    <string name="bg3">背景3</string>
+    <string name="bg4">背景4</string>
+    <string name="bg5">背景5</string>
+    <string name="happy_thing">快来写一些搞笑的事情吧</string>
+    <string name="publish">发表</string>
 </resources>

@@ -1,8 +1,10 @@
 package com.bignerdranch.android.wintervacationhomework;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,9 +27,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.support.v7.widget.Toolbar;
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FragmentManager manager;
     private FragmentTransaction transaction;
 
+    final Context context = this;
     DrawerLayout drawerLayout;
     ImageView iv;
     TextView tv;
@@ -64,9 +69,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         imageView = findViewById(R.id.back_image);
+        drawerLayout=findViewById(R.id.drawer_layout);
 
-        NavigationView navView = findViewById(R.id.nav_view);
-        View header = navView.getHeaderView(0);
+        final NavigationView navView = findViewById(R.id.nav_view);
+        final View header = navView.getHeaderView(0);
         iv=header.findViewById(R.id.header_icon);
         tv=header.findViewById(R.id.name);
         Bitmap bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.picture2);
@@ -79,25 +85,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //设置菜单列表的点击事件
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
 
                 switch (item.getItemId()){
                     case R.id.bk_one:
                         imageView.setImageResource(R.drawable.back6);
-                        Toast.makeText(MainActivity.this,"11",Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
                         break;
                     case R.id.bk_two:
                         imageView.setImageResource(R.drawable.back7);
+                        drawerLayout.closeDrawers();
                         break;
                     case R.id.bk_three:
                         imageView.setImageResource(R.drawable.back8);
+                        drawerLayout.closeDrawers();
                         break;
                     case R.id.bk_four:
                         imageView.setImageResource(R.drawable.back9);
+                        drawerLayout.closeDrawers();
                         break;
                     case R.id.bk_five:
                         imageView.setImageResource(R.drawable.back10);
+                        drawerLayout.closeDrawers();
                         break;
+                    case R.id.message:
+                        LayoutInflater layoutInflater = LayoutInflater.from(context);
+                        @SuppressLint("InflateParams") View promptsView = layoutInflater.inflate(R.layout.prompts,null);
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                        alertDialogBuilder.setView(promptsView);
+                        final EditText userInput = promptsView.findViewById(R.id.user_input);
+                        alertDialogBuilder
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        TextView textView = header.findViewById(R.id.desc);
+                                        textView.setText(userInput.getText());
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                        drawerLayout.closeDrawers();
                 }
 
                 return true;
@@ -108,16 +142,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         toolbar= findViewById(R.id.toolbar);
 
-        drawerLayout=findViewById(R.id.drawer_layout);
-        //设置滑动菜单项的点击事件
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                drawerLayout.closeDrawers();
-                return true;
-            }
-        });
-        
         setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null){
             setTitle("");
@@ -208,7 +232,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void openAlbum(){
-        /*Intent intent = new Intent("android.intent.action.GET_CONTIENT");*/
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");

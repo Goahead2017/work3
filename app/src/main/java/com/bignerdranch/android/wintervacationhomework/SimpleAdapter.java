@@ -25,7 +25,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<MyViewHolder> implements
 
     private OnItemClickListener mOnItemClickListener;
 
-    public void setmOnItemClickListener(OnItemClickListener listener){
+    void setmOnItemClickListener(OnItemClickListener listener){
         this.mOnItemClickListener = listener;
     }
 

@@ -19,6 +19,8 @@ public class ExtraAdapter extends RecyclerView.Adapter implements View.OnClickLi
     private List<String>dataList;
     private Context context;
     private View itemView;
+    private TextView textView1;
+    private TextView textView2;
 
     public ExtraAdapter(Context context,List<String>list){
         this.context = context;
@@ -28,6 +30,8 @@ public class ExtraAdapter extends RecyclerView.Adapter implements View.OnClickLi
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.extra_item ,parent,false);
+        textView1 = itemView.findViewById(R.id.tv1);
+        textView2 = itemView.findViewById(R.id.tv2);
         return new ItemHolder(itemView);
     }
 
@@ -58,13 +62,13 @@ public class ExtraAdapter extends RecyclerView.Adapter implements View.OnClickLi
         if(mOnItemClickListener != null){
             switch (v.getId()){
                 case R.id.great:
-                    mOnItemClickListener.onClick(itemView,ViewName.GREAT,position);
+                    mOnItemClickListener.onClick(itemView,textView1,textView2,ViewName.GREAT,position);
                     break;
                 case R.id.bad:
-                    mOnItemClickListener.onClick(itemView,ViewName.BAD,position);
+                    mOnItemClickListener.onClick(itemView,textView1,textView2,ViewName.BAD,position);
                     break;
                     default:
-                        mOnItemClickListener.onClick(itemView,ViewName.ITEM,position);
+                        mOnItemClickListener.onClick(itemView,textView1,textView2,ViewName.ITEM,position);
                         break;
             }
         }
@@ -72,11 +76,11 @@ public class ExtraAdapter extends RecyclerView.Adapter implements View.OnClickLi
 
     private class ItemHolder extends RecyclerView.ViewHolder {
 
-        public ImageView great;
-        public ImageView bad;
-        public TextView tv;
+        ImageView great;
+        ImageView bad;
+        TextView tv;
 
-        public ItemHolder(View itemView) {
+        ItemHolder(View itemView) {
             super(itemView);
             great = itemView.findViewById(R.id.great);
             bad = itemView.findViewById(R.id.bad);
@@ -90,7 +94,7 @@ public class ExtraAdapter extends RecyclerView.Adapter implements View.OnClickLi
 
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
 
-    public void setOnItemClickListener(OnRecyclerViewItemClickListener listener){
+    void setOnItemClickListener(OnRecyclerViewItemClickListener listener){
         this.mOnItemClickListener = listener;
     }
 
@@ -102,7 +106,7 @@ public class ExtraAdapter extends RecyclerView.Adapter implements View.OnClickLi
     }
 
     public interface OnRecyclerViewItemClickListener{
-        void onClick(View view,ViewName viewName,int position);
+        void onClick(View view,TextView tv1,TextView tv2,ViewName viewName,int position);
     }
 
 }

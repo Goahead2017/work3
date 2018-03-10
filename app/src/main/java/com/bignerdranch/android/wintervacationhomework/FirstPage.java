@@ -52,14 +52,15 @@ public class FirstPage extends Fragment implements View.OnClickListener {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         extraAdapter = new ExtraAdapter(getActivity(), Other.data2);
         mRecyclerView.setAdapter(extraAdapter);
+        mRecyclerView.setNestedScrollingEnabled(false);
 
         extraAdapter.setOnItemClickListener(new ExtraAdapter.OnRecyclerViewItemClickListener() {
             @Override
-            public void onClick(View view, ExtraAdapter.ViewName viewName, int position) {
+            public void onClick(View view, TextView textView1,TextView textView2,ExtraAdapter.ViewName viewName, int position) {
                 //处理点击事件，viewName用于区分
                 switch (viewName) {
                     case GREAT:
-                        tv1 = view.findViewById(R.id.tv1);
+                        tv1 = textView1.findViewById(R.id.tv1);
                         if (Other.flag1 && Other.flag2) {
                             Other.x++;
                             tv1.setText(String.valueOf(Other.x));
@@ -71,7 +72,7 @@ public class FirstPage extends Fragment implements View.OnClickListener {
                         }
                         break;
                     case BAD:
-                        tv2 = view.findViewById(R.id.tv2);
+                        tv2 = textView2.findViewById(R.id.tv2);
                         if (Other.flag1 && Other.flag2) {
                             Other.y++;
                             tv2.setText(String.valueOf(Other.y));
@@ -98,34 +99,6 @@ public class FirstPage extends Fragment implements View.OnClickListener {
 
         return view;
     }
-
-   /* //解析json数据
-    private void sendRequestWithOkHttp() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    OkHttpClient client = new OkHttpClient();
-                    Request request = new Request.Builder()
-                            .url("http://172.0.0.1/get_data.json")
-                            .build();
-                    Response response = client.newCall(request).execute();
-                    String responseData = response.body().string();
-                    parseJSONWITHGSON(responseData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
-
-    private void parseJSONWITHGSON(String jsonData) {
-        Gson gson = new Gson();
-        List<HappyThing>happyThingList = gson.fromJson(jsonData,new TypeToken<List<HappyThing>>(){}.getType());
-        for (HappyThing happyThing :happyThingList){
-            Other.data2.add(happyThing.getContext());
-        }
-    }*/
 
     private void refreshRecycler() {
         new Thread(new Runnable() {

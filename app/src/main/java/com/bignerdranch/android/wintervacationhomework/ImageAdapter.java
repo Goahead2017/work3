@@ -21,7 +21,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
     private List<Integer>imageId;
     private Context context;
 
-    public ImageAdapter(List<Integer>list){
+    ImageAdapter(List<Integer> list){
         imageId = list;
     }
 
@@ -43,12 +43,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
         return imageId.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         CardView cardView;
         ImageView imageView;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             cardView = (CardView)itemView;
             imageView = itemView.findViewById(R.id.another_image);

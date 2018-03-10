@@ -3,35 +3,35 @@
 
     <item
         android:id="@+id/message"
-        android:title="个性签名"/>
+        android:title="@string/personal_saying"/>
 
     <group android:checkableBehavior="single">
 
         <item
             android:id="@+id/skin"
-            android:title="换肤">
+            android:title="@string/change_skin">
 
             <menu>
 
                 <item
                     android:id="@+id/bk_one"
-                    android:title="背景1"/>
+                    android:title="@string/bg1"/>
 
                 <item
                     android:id="@+id/bk_two"
-                    android:title="背景2"/>
+                    android:title="@string/bg2"/>
 
                 <item
                     android:id="@+id/bk_three"
-                    android:title="背景3"/>
+                    android:title="@string/bg3"/>
 
                 <item
                     android:id="@+id/bk_four"
-                    android:title="背景4"/>
+                    android:title="@string/bg4"/>
 
                 <item
                     android:id="@+id/bk_five"
-                    android:title="背景5"/>
+                    android:title="@string/bg5"/>
 
             </menu>
 

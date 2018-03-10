@@ -22,7 +22,7 @@
                 android:layout_weight="3"
                 android:layout_gravity="center"
                 android:singleLine="true"
-                android:hint="快来写一些搞笑的事情吧" />
+                android:hint="@string/happy_thing" />
 
             <Button
                 android:id="@+id/joke_button"
@@ -30,7 +30,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="#6699FF"
-                android:text="发表"
+                android:text="@string/publish"
                 android:textColor="#ffffff"/>
 
         </LinearLayout>
